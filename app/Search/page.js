@@ -7,12 +7,12 @@ import axios from 'axios';
 export default function page() {
 
     var [bydate,setbyDate]=useState([])
-    const [exdata,setData]=useState([]) 
-    useEffect(() => {
+//     const [exdata,setData]=useState([]) 
+//     useEffect(() => {
 
    
   
-}, []);
+// }, []);
 
     const formik=useFormik({
         initialValues: {},
@@ -20,13 +20,15 @@ export default function page() {
 
         }),
         onSubmit:(values,{resetForm})=>{
+          setbyDate([])
          
             axios.post('http://localhost:3000/expense/expensesbydate',values)
             .then(response=>{
-                setData(response.data)
+                // setData(response.data)
+                
                
 
-               
+              //  makeList(response.data)
                 ok(response.data)
             })
             .catch(err=>{
@@ -45,36 +47,104 @@ export default function page() {
     })
 
  
-   
-   
-function ok(exdata){
-    
+   function sumofList(values) {
+   var sum =0
+    values.forEach(element=>{
 
-    var arr=[]
-    
-   exdata && exdata.forEach(item=>{
-        if (arr.length<1) {
-            arr.push(item)
-            
-        }
-        else{
-            arr.forEach(bd=>{
-                if(bd.date==item.date){
-                    bd.ammount=bd.ammount+item.ammount;
-                }
-                else{
-                    arr.push(item)
-                }
-            })
-        }
-
-        setbyDate(arr)
-       
+      sum += element.ammount;
     })
+    return sum;
+   }
 
+
+   
+function ok(transactions){
+    
+  const transactionsByDate = {};
+  var lsitof=[]
+
+  transactions.forEach(transaction => {
+    const { date } = transaction;
+    if (date in transactionsByDate) {
+      transactionsByDate[date].push(transaction);
+    } else {
+      transactionsByDate[date] = [transaction];
+    }
+  });
+  console.log(transactionsByDate);
+
+  for (let key in transactionsByDate) {
+   console.log(transactionsByDate[key]);
+   var s=sumofList(transactionsByDate[key])
+   var tr={
+    date:key,
+    ammount:s
+   }
+
+   lsitof.push(tr)
+  }
+
+
+ setbyDate(lsitof)
 }
 
-console.log(bydate);
+function sum(bydate){
+ var  sum=0;
+ bydate.forEach(element => {
+  
+  sum += element.ammount;
+ });
+ return sum;
+}
+
+
+
+
+// function makeList(arr){
+  
+//   var tr={
+//     date:"",
+//     list:[]
+//   }
+//   var list = [];
+ 
+//   arr.forEach(element =>{
+//     if (list.length <1){
+    
+//       tr.date = element.date;
+//       tr.list.push(element);
+      
+//       list.push(tr);
+//       // console.log(list);
+
+//       // if(tr.date==element.date){
+
+//       //   tr.list.push(element);
+//       // }
+//     }
+
+//     else{
+//       list.forEach(item=>{
+//         if (item.date==element.date){
+//           item.list.push(element)
+//         }
+//         else{
+//           list.push(tr);
+//         }
+//       })
+//     }
+   
+   
+    
+//   })
+
+
+//   console.log("Hello",list);
+// }
+
+
+
+// console.log(bydate);
 
   return (
     <div>
@@ -103,7 +173,7 @@ console.log(bydate);
 </form>
 
 
-{bydate && (<div class="w-3/4 mx-auto mt-16 p-4 sm:ml-64">
+{bydate && (<div class="w-3/4 ">
         <div class="bg-gray-50 shadow-md rounded my-6">    
       <table class="text-left w-full border-collapse">
             <thead>
@@ -132,6 +202,11 @@ console.log(bydate);
                 );
                 
               })}
+              <tr>
+                <td> Total Expense </td>
+                <td> $ {sum(bydate)} </td>
+
+              </tr>
             </tbody>
           </table>
 

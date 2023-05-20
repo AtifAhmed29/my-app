@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import Barchart from '../barchart';
 
 export default function page() {
     const [data,setData]=useState([])
@@ -96,12 +97,34 @@ function predict(data){
 }
 
 
+function NextSevenDays(){
+    var label=[]
+   
+    
+  
+    
+    for (var i=0; i<7; i++){
+        var d= new Date()
+        d.setDate(d.getDate()+i)
+       
+        label.push(d.toDateString().slice(0,10))
+    }
+  
+    return label;
+}
+
+
+
+
+
+
+
 
 console.log(avg);
 
   return (
     <div>
-      
+      <Barchart data={avg} label={NextSevenDays()} />
     </div>
   )
 }

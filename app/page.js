@@ -2,9 +2,7 @@
 'use client'
 import axios from 'axios';
 import { useFormik } from 'formik'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react';
+
 import { object, string, number, date, InferType } from 'yup';
 export default function Home() {
 
@@ -80,6 +78,9 @@ export default function Home() {
       <option value="eat">Eat Outs</option>
       <option value="gardening">Gardening</option>
       <option value="health">Healt Care</option>
+      <option value="grocerie">Grouceries</option>
+      <option value="utility">Utility</option>
+      <option value="commute">Commutes</option>
       
   </select>
 
