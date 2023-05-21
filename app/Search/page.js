@@ -241,7 +241,7 @@ console.log(expense);
                           {transaction.ammount} Tk
                         </td>
                         <td className='px-6 py-4'>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href={`/${transaction._id}`} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         <button onClick={()=>{handleDelete(transaction._id)}} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
                         </td>
                       </tr>
