@@ -15,14 +15,15 @@ ChartJS.register(
 )
 
 export default function PieChart(props) {
+    console.log(props);
 
     const data={
-        labels:['Gardening','Health Care','Food'],
+        labels:['Gardening','Health Care','Food','Grocery','Utilities','Commutes'],
         datasets:[{
             label:'Poll',
             data:props.data,
-            backgroundColor:['black','red','green'],
-            bordercolor:['black','red','green'],
+            backgroundColor:['black','red','green','violet','blue','magenta'],
+            bordercolor:['black','red','green','violet','blue','magenta'],
         }]
     }
 

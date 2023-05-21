@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import Barchart from '../barchart';
 
+
 export default function page() {
     const [data,setData]=useState([])
     const [avg,setAvg]=useState([])
@@ -36,7 +37,61 @@ function sum(x){
     return sum;
 }
 
-function predict(data){
+function predict(transactions){
+
+
+
+
+    const transactionsByDate = {};
+  var lsitof=[]
+
+  transactions.forEach(transaction => {
+    const { date } = transaction;
+    if (date in transactionsByDate) {
+      transactionsByDate[date].push(transaction);
+    } else {
+      transactionsByDate[date] = [transaction];
+    }
+  });
+  console.log(transactionsByDate);
+  
+
+
+
+  for (let key in transactionsByDate) {
+    
+    var s=sumofList(transactionsByDate[key])
+    // var tr={
+    //  date:key.slice(0,10),
+    //  ammount:s
+    // }
+ 
+    lsitof.push(s)
+   }
+
+
+   function sumofList(values) {
+    var sum =0
+    var day=''
+    var list=[]
+     values.forEach(element=>{
+ 
+    
+       sum += element.ammount;
+   
+       day=element.day
+        // var tr={
+        // day:element.day,
+        // ammount:s
+        // }
+        // list.push(tr)
+
+       
+     })
+     return {day:day,sum:sum};
+    }
+ 
+
     var saturday=[]
     var sunday=[]
     var monday=[]
@@ -56,29 +111,31 @@ function predict(data){
     friday.push(0)
   
 
-    data.forEach(element => {
+    console.log(lsitof);
+
+    lsitof.forEach(element => {
         if(element.day=='Saturday'){
 
            
-            saturday.push(element.ammount)
+            saturday.push(element.sum)
         }
         else if(element.day=='Sunday'){
-            sunday.push(element.ammount)
+            sunday.push(element.sum)
         }
         else if(element.day=='Monday'){
-            monday.push(element.ammount)
+            monday.push(element.sum)
         }
         else if(element.day=='Tuesday'){
-            tuesday.push(element.ammount)
+            tuesday.push(element.sum)
         }
         else if(element.day=='Wednesday'){
-            wednesday.push(element.ammount)
+            wednesday.push(element.sum)
         }
         else if(element.day=='Thursday'){
-            thursday.push(element.ammount)
+            thursday.push(element.sum)
         }
         else if(element.day=='Friday'){
-            friday.push(element.ammount)
+            friday.push(element.sum)
         }
 
       
@@ -94,6 +151,7 @@ function predict(data){
     predict.push(sum(friday)/friday.length)
 
     setAvg(predict)
+    console.log(predict);
 }
 
 
@@ -116,15 +174,54 @@ function NextSevenDays(){
 
 
 
+function maper(avg,days){
+  var  listofObject=[]
+    days.forEach(item=>{
+       
+
+        const obj={
+            day:'',
+            avg:0
+        }
+
+        if (item.slice(0,3)==='Sat') {
+            listofObject.push(avg[0])
+        }
+        if (item.slice(0,3)==='Sun') {
+            listofObject.push(avg[1])
+        }
+        if (item.slice(0,3)==='Mon') {
+            listofObject.push(avg[2])
+        }
+        if (item.slice(0,3)==='Tue') {
+            listofObject.push(avg[3])
+        }
+        if (item.slice(0,3)==='Wed') {
+            listofObject.push(avg[4])
+        }
+        if (item.slice(0,3)==='Thu') {
+            listofObject.push(avg[5])
+        }
+        if (item.slice(0,3)==='Fri') {
+            listofObject.push(avg[6])
+        }
+
+
+    })
+
+    return listofObject;
+}
 
 
 
 
-console.log(avg);
+
+
+console.log(NextSevenDays());
 
   return (
     <div>
-      <Barchart data={avg} label={NextSevenDays()} />
+      <Barchart data={maper(avg,NextSevenDays())} label={NextSevenDays()} />
     </div>
   )
 }

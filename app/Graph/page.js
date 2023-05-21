@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useFormik } from 'formik'
-import { object, string, number, date, InferType } from 'yup';
+import * as yup from 'yup';
 import PieChart from '../PieChart';
 
 
@@ -11,11 +11,19 @@ export default function page() {
 const [gardening,setGardening]=useState([])
 const [eat, setEat]=useState([])
 const [health, setHealth]=useState([])
+const [grocerie,setGrocerie]=useState([])
+const [utility, setUtility]=useState([])
+const [commute, setCommute]=useState([])
 const [data, setData]=useState([])
 
     const formik=useFormik({
-        initialValues: {},
-        validationSchema:object({
+        initialValues: {
+          min:'',
+          max:''
+        },
+        validationSchema:yup.object({
+          min:yup.date().required(),
+          max:yup.date().required()
 
         }),
         onSubmit:(values,{resetForm})=>{
@@ -56,6 +64,9 @@ const [data, setData]=useState([])
         var aeat=[]
         var ahealth=[]
         var agardening=[]
+        var autiliy=[]
+        var acommute=[]
+        var agrocerie=[]
         var adata=[]
 
         data.forEach(element => {
@@ -71,6 +82,21 @@ const [data, setData]=useState([])
             agardening.push(element.ammount)
 
           }
+          else if (element.category=='grocerie'){
+
+            agrocerie.push(element.ammount)
+
+          }
+          else if (element.category=='utility'){
+
+            autiliy.push(element.ammount)
+
+          }
+          else if (element.category=='commute'){
+
+            acommute.push(element.ammount)
+
+          }
         });
 
 
@@ -82,6 +108,9 @@ const [data, setData]=useState([])
         adata.push(sum(agardening))
         adata.push(sum(ahealth))
         adata.push(sum(aeat))
+        adata.push(sum(agrocerie))
+        adata.push(sum(autiliy))
+        adata.push(sum(acommute))
 
         setData(adata)
     }
