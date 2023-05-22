@@ -28,7 +28,7 @@ const [data, setData]=useState([])
         }),
         onSubmit:(values,{resetForm})=>{
          
-            axios.post('http://localhost:3000/expense/expensegraph',values)
+            axios.post('https://expensetrack-production.up.railway.app/expense/expensegraph',values)
             .then(response=>{
                
                ok(response.data)

@@ -11,7 +11,7 @@ export default function page() {
 
 useEffect(() => {
  
-    axios.get('http://localhost:3000/expense/all')
+    axios.get('https://expensetrack-production.up.railway.app/expense/all')
     .then(response=>{
 
         predict(response.data)

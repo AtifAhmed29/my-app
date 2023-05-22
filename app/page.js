@@ -32,7 +32,7 @@ const [alert,setAlert]=useState('')
       console.log(newday);
       values.day=newday
       console.log(values);
-      axios.post('http://localhost:3000/expense/add', values)
+      axios.post('https://expensetrack-production.up.railway.app/expense/add', values)
       .then(response =>{
         
         

@@ -24,7 +24,7 @@ export default function page() {
 
 
 function handleDelete(id){
-  axios.delete(`http://localhost:3000/expense/delete/${id}`)
+  axios.delete(`https://expensetrack-production.up.railway.app/expense/delete/${id}`)
   .then((response) => {
     window.location.reload();
 console.log(response);
@@ -49,7 +49,7 @@ console.log(response);
         onSubmit:(values,{resetForm})=>{
           setbyDate([])
          setTrigger('')
-            axios.post('http://localhost:3000/expense/expensesbydate',values)
+            axios.post('https://expensetrack-production.up.railway.app/expense/expensesbydate',values)
             .then(response=>{
                 // setData(response.data)
                 resetForm(values)

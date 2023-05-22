@@ -12,7 +12,7 @@ export default function id(context) {
  useEffect(() => {
 
  
-  axios.get(`http://localhost:3000/expense/byid/${id}`)
+  axios.get(`https://expensetrack-production.up.railway.app/expense/byid/${id}`)
   .then(response =>{
     setData(response.data);
   })
@@ -52,7 +52,7 @@ export default function id(context) {
     }
     console.log(values);
 
-   axios.put(`http://localhost:3000/expense/edit/${id}`,values)
+   axios.put(`https://expensetrack-production.up.railway.app/expense/edit/${id}`,values)
   .then(response =>{
     setData(response.data);
     setAlert('Data updated successfully')
