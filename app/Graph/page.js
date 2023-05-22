@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useFormik } from 'formik'
 import * as yup from 'yup';
-import PieChart from '../PieChart';
+import PieChart from '../components/PieChart';
 
 
 export default function page() {

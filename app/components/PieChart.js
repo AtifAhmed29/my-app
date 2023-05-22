@@ -6,7 +6,7 @@ import {
     Legend
 } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
-import { data } from 'autoprefixer'
+
 
 ChartJS.register(
     ArcElement,
@@ -20,10 +20,10 @@ export default function PieChart(props) {
     const data={
         labels:['Gardening','Health Care','Food','Grocery','Utilities','Commutes'],
         datasets:[{
-            label:'Poll',
+            label:'Tk',
             data:props.data,
-            backgroundColor:['black','red','green','violet','blue','magenta'],
-            bordercolor:['black','red','green','violet','blue','magenta'],
+            backgroundColor:['black','red','green','violet','blue','cyan'],
+            bordercolor:['black','red','green','violet','blue','cyan'],
         }]
     }
 
@@ -31,7 +31,7 @@ export default function PieChart(props) {
 
     }
   return (
-    <div className='w-1/3 h-1/3 '>
+    <div className='w-full pl-96 pr-96 mt-10'>
         <Doughnut
         
         data={data}

@@ -29,12 +29,14 @@ export default function Barchart(props) {
         
         datasets:[
             {
-                label:'Forcast ',
+                label:'Forcast(Tk) ',
                 data:props.data,
-                backgroundColor:['red', 'green'],
+                backgroundColor:['red', 'green','blue','yellow','violet','cyan','tomato'],
                 bordercolor:'black',
                 borderWidth:1,
-            }
+            },
+            
+            
         ]
     }
 
@@ -42,7 +44,7 @@ export default function Barchart(props) {
 
     }
   return (
-    <div className='w-1/2 pl-24 '>
+    <div >
       
       <Bar
       

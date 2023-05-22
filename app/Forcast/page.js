@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-import Barchart from '../barchart';
+import Barchart from '../components/barchart';
 
 
 export default function page() {
@@ -163,7 +163,7 @@ function NextSevenDays(){
     
     for (var i=0; i<7; i++){
         var d= new Date()
-        d.setDate(d.getDate()+i)
+        d.setDate(d.getDate()+i+1)
        
         label.push(d.toDateString().slice(0,10))
     }
@@ -220,7 +220,7 @@ function maper(avg,days){
 console.log(NextSevenDays());
 
   return (
-    <div>
+    <div className='w-full pl-96 pr-96 mt-20'>
       <Barchart data={maper(avg,NextSevenDays())} label={NextSevenDays()} />
     </div>
   )
