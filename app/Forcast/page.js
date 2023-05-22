@@ -142,13 +142,13 @@ function predict(transactions){
         
     });
 
-    predict.push(sum(saturday)/saturday.length-1)
-    predict.push(sum(sunday)/sunday.length-1)
-    predict.push(sum(monday)/monday.length-1)
-    predict.push(sum(tuesday)/tuesday.length-1)
-    predict.push(sum(wednesday)/wednesday.length-1)
-    predict.push(sum(thursday)/thursday.length-1)
-    predict.push(sum(friday)/friday.length-1)
+    predict.push(sum(saturday)/(saturday.length)-1)
+    predict.push(sum(sunday)/(sunday.length)-1)
+    predict.push(sum(monday)/(monday.length)-1)
+    predict.push(sum(tuesday)/(tuesday.length)-1)
+    predict.push(sum(wednesday)/(wednesday.length)-1)
+    predict.push(sum(thursday)/(thursday.length)-1)
+    predict.push(sum(friday)/(friday.length)-1)
 
     setAvg(predict)
     console.log(predict);
