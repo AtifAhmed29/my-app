@@ -171,7 +171,7 @@ console.log(expense);
             {Object.keys(expense).map(date => (
                <>
                   <tr  className="hover:bg-gray-200">
-                    <td className="py-4 px-6 border-b border-grey-light">Total Expense of {date}</td>
+                    <td className="py-4 px-6 border-b border-grey-light">Total Expense of {date.slice(0,10)}</td>
                     <td>{sumofList(expense[date])} Tk</td>
                    
                    
